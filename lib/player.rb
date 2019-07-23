@@ -43,10 +43,40 @@ class HumanPlayer < Player
     super(name, life_points)
   end
 
+  def show_state
+    puts "The player #{@name} has #{@life_points} life points and a weapon_level #{weapon_level}."
+  end
 
+  def compute_damage
+      rand(1..6) * @weapon_level
+  end
 
+  def search_weapon
+    level = rand(1..6)
+    puts "You find a weapon of level #{level}!"
+    if level > weapon_level
+      puts "This new weapon is better than the previous one: Take it!"
+      weapon_level = level
+    else
+      puts "Shit! This weapon is not better than your current one!"
+    end
+  end
 
-  
+  def search_health_pack
+    health_level = rand(1..6)
+    if health_level == 1
+      puts "You did not find anything"
+    elsif health_level.between?(2,5) #(2 <= health_level) && (health_level<= 5)
+      puts "Congrats! You've just found a +50 health pack!"
+      @life_points + 50 > 100 ? @life_points = 100 : @life_points += 50
+    else
+      puts "Congrats! You've just found a +80 health pack!"
+      @life_points + 80 > 100 ? @life_points = 100 : @life_points += 80
+    end
+  end
+
 
 # End of the class HumanPlayer
 end
+
+binding.pry
