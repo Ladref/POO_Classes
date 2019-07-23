@@ -9,7 +9,7 @@ class Player
   end
 
   def show_state
-    puts "The player #{@name} has #{@life_points} life points."
+    print "The player #{@name} has #{@life_points} life points."
   end
 
   def gets_damage(damage)
@@ -78,5 +78,3 @@ class HumanPlayer < Player
 
 # End of the class HumanPlayer
 end
-
-binding.pry
